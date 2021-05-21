@@ -1,0 +1,22 @@
+<form #addCustomerForm="ngForm" (ngSubmit)="addCustomer(addCustomerForm)">
+    <input type="text" [(ngModel)]="firstname" name="firstname" placeholder="Firstname" required minlength="2">
+    <div>
+        {{firstname}}
+    </div>
+    <br>
+    <select [(ngModel)]="customerType" name="customerType">
+        <option value="1">Premium</option>
+        <option value="2">Business</option>
+        <option value="3">Free</option>
+    </select>
+    <br>
+    <label class="mt-3">Check to accept (<a href="../terms">read</a>) Terms:</label>
+    <input type="checkbox" [(ngModel)]="terms" name="terms" class="mt-2 ml-1" required>
+    <br>
+    <textarea [(ngModel)]="description" name="description"></textarea>
+    <br>
+    <button type="submit" class="btn btn-outline-info" [disabled]="!addCustomerForm.valid">Add Customer</button>
+    <button class="btn btn-outline-danger" (click)="resetForm(addCustomerForm)">Reset</button>
+    <br>
+    <button class="btn btn-outline-secondary" (click)="loadValues(addCustomerForm)">Set Form Values</button>
+  </form>

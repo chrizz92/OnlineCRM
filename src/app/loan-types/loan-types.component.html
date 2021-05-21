@@ -1,0 +1,46 @@
+<p>loan-types works!</p>
+<div class="container">
+    <form [formGroup]="addLoanType">
+        <div class="form-group">
+            <label for="loanName" class="form-control-plaintext">LoanName:</label>
+            <input type="text" formControlName="loanName" class="form-control" (keyup)="trackLoanNameChanges()">
+            <span *ngIf="addLoanType.get('loanName').hasError('required') && addLoanType.get('loanName').touched" class="text-danger">
+                Field is required
+            </span>
+            <span *ngIf="addLoanType.get('loanName').hasError('minlength') && addLoanType.get('loanName').touched" class="text-danger">
+                Field should have minimum of 10 Characters
+            </span>
+            <button (click)="getLoanName()" class="form-control btn-success">Save LoanName</button>
+        </div>
+        <div class="form-group">
+            <label for="loanType" class="form-control-plaintext">LoanType:</label>
+            <input type="text" formControlName="loanType" class="form-control">
+            <span *ngIf="addLoanType.get('loanType').hasError('required') && addLoanType.get('loanType').touched" class="text-danger">
+                Field is required
+            </span>
+            <span *ngIf="addLoanType.get('loanType').hasError('minlength') && addLoanType.get('loanType').touched" class="text-danger">
+                Field should have 5-10 Characters
+            </span>
+            <span *ngIf="addLoanType.get('loanType').hasError('maxlength') && addLoanType.get('loanType').touched" class="text-danger">
+                Field should have maximum of 10 Characters
+            </span>
+            <button (click)="getLoanType()" class="form-control btn-success">Save LoanType</button>
+        </div>
+        <div class="form-group">
+            <label for="loanDescription" class="form-control-plaintext">Description:</label>
+            <textarea formControlName="loanDescription" class="form-control"></textarea>
+            <span *ngIf="addLoanType.get('loanDescription').hasError('maxlength') && addLoanType.get('loanType').touched" class="text-danger">
+                Field should have maximum of 200 Characters
+            </span>
+            <button (click)="getLoanDescription()" class="form-control btn-success">Save Description</button>
+        </div>
+        <div class="form-group">
+            <button (click)="addType()" [disabled]="!addLoanType.valid" [ngClass]="addLoanType.valid==false ? ' form-control btn-disabled' : 'form-control btn-primary'">Add Loan Type</button>
+            <button (click)="resetForm()" class="form-control btn-danger mt-1">Reset Form</button>
+            <button (click)="setFormValues()" class="form-control btn-secondary mt-1">Set Form Values</button>
+            <button (click)="getChangesFormValues()" class="form-control btn-success mt-1">Get changed Values</button>
+        </div>
+    </form>
+    <button (click)="getFormStatus()" class="form-control btn-block mt-1">Get Form Status</button>
+</div>
+
